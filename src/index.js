@@ -60,7 +60,7 @@ async function verifyConditions(pluginConfig, context) {
 
   let documentData = null;
   try {
-    documentData = await util.promisify(confluence.getContentById).call(confluence, pluginConfig.documentID);
+    documentData = await util.promisify(confluence.getCustomContentById).call(confluence, {id: pluginConfig.documentID, expanders: ['space','version']});
   } catch(error) {
     logger.fatal(`There was an error while trying to determine the existence of document ${pluginConfig.documentID}`);
     throw [new SemanticReleaseError('Error determining document existence', 'E_DET_DOC_EXISTS_REMOTE', `There was an error while trying to determine the exist of a document with ID ${pluginConfig.documentID}`), error];
