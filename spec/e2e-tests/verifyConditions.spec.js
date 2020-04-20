@@ -1,16 +1,21 @@
-var semanticRelease = require('semantic-release');
-var path = require('path');
-var assert = require('assert');
-var {gitbox, gitUtils, npmregistry, mockServer} = require('semantic-release-test-utils');
-var tempy = require('tempy');
+const semanticRelease = require('semantic-release');
+const path = require('path');
+const assert = require('assert');
+const {gitbox, gitUtils, npmregistry, mockServer} = require('semantic-release-test-utils');
+const tempy = require('tempy');
+const fs = require('fs');
 
 const owner = 'git';
 
 const semanticReleaseEnv = {
   GH_TOKEN: gitbox.gitCredential,
   GITHUB_URL: mockServer.url,
-  CI: true
-}
+  CI: true,
+  CONFLUENCE_USERNAME: 'username',
+  CONFLUENCE_TOKEN: 'token'
+};
+
+const documentContent = fs.readFileSync(path.resolve(__dirname, 'index.xml'));
 
 beforeAll(async function() {
   console.info('Starting test servers....');
@@ -51,11 +56,9 @@ describe('verifyConditions',function(){
       ...gitConfig,
       plugins: [
         [path.resolve(__dirname,'../../'), {
-          specPath: path.resolve(__dirname, '../../README.md'),
-          outputPath: path.resolve(gitConfig.cwd, 'outputfile'),
-          plugin: {
-            package: path.resolve(__dirname, '../test-plugin')
-          }
+          baseUrl: mockServer.url + '/wiki',
+          documentID: '1234',
+          documentPath: path.resolve(__dirname,'index.xml')
         }]
       ],
       dryRun: false,
@@ -71,9 +74,50 @@ describe('verifyConditions',function(){
     );
 
     let getDocumentMock = await mockServer.mock(`/wiki/rest/api/content/1234`,
-      {headers: [{name: 'Authorization', values: [`Basic username:token`]}]}),
+      {headers: [{name: 'Authorization', values: [`Basic username:token`]}]},
+      {
+        body: {
+          version: { number: 1 },
+          id: '1234',
+          space: {
+            key: 'TST'
+          },
+          title: 'Testing'
+        },
+        method: 'GET'
+      }
+    );
 
-      ;
+    let putDocumentMock = await mockServer.mock('/wiki/rest/api/content/1234',
+    {
+      headers: [
+      {name: 'Authorization', values: [`Basic username:token`]},
+      {name: 'Accept', values: 'application/json'},
+      {name: 'Content-Type', values: 'application/json'}
+      ]
+    },
+    {
+      body: {
+        "id": '1234',
+        "type": "page",
+        "title": 'Testing',
+        "space": {
+            "key": 'TST'
+        },
+        "version": {
+            "number": 2,
+            "minorEdit": false
+        },
+        "body": {
+            "storage": {
+                "value": documentContent,
+                "representation": "storage"
+            }
+        }
+      },
+      method: 'PUT'
+    }
+    );
 
 
     gitUtils.gitCommits(['feat: force a release'], {cwd});

@@ -7,30 +7,31 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@semantic-release/error": "^2.2.0",
-    "confluence-api": "^1.4.0",
-    "debug": "^4.1.1",
-    "figures": "^3.2.0",
-    "pify": "^5.0.0",
-    "requireg": "^0.2.2",
-    "signale": "^1.4.0"
+    "@semantic-release/error": "2.2.x",
+    "confluence-api": "1.4.x",
+    "debug": "4.1.x",
+    "figures": "3.2.x",
+    "lodash": "^4.17.15",
+    "pify": "5.0.x",
+    "requireg": "0.2.x",
+    "signale": "1.4.x"
   },
   "directories": {
     "lib": "src"
   },
   "devDependencies": {
-    "@semantic-release/commit-analyzer": "^8.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.0.5",
-    "@semantic-release/release-notes-generator": "^9.0.1",
-    "jasmine": "^3.5.0",
-    "nodemon": "^2.0.3",
-    "semantic-release": "17.0.x",
+    "@semantic-release/commit-analyzer": "8.0.x",
+    "@semantic-release/git": "9.0.x",
+    "@semantic-release/github": "7.0.x",
+    "@semantic-release/release-notes-generator": "9.0.x",
+    "jasmine": "3.5.x",
+    "nodemon": "2.0.x",
+    "semantic-release": "^17.0.6",
     "semantic-release-test-utils": "https://github.com/michaelmccord/semantic-release-test-utils"
   },
   "peerDependencies": {
     "semantic-release": "17.0.x",
-    "spec-md": "^1.1.1"
+    "spec-md": "1.1.x"
   },
   "scripts": {
     "test": "jasmine",
