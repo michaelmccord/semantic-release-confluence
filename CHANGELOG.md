@@ -1,5 +1,12 @@
 semantic-release-spec-md Changelog
 
+## [1.0.1](https://github.com/michaelmccord/semantic-release-confluence/compare/v1.0.0...v1.0.1) (2020-04-20)
+
+
+### Bug Fixes
+
+* fix issue where document space isn't retrieved ([4e07f84](https://github.com/michaelmccord/semantic-release-confluence/commit/4e07f84890f81f8e5c4397ba68f6ba3713e9b917))
+
 # 1.0.0 (2020-04-20)
 
 
