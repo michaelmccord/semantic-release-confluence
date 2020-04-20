@@ -11,7 +11,7 @@
     "confluence-api": "1.4.x",
     "debug": "4.1.x",
     "figures": "3.2.x",
-    "lodash": "^4.17.15",
+    "lodash": "4.17.x",
     "pify": "5.0.x",
     "requireg": "0.2.x",
     "signale": "1.4.x"
@@ -19,14 +19,21 @@
   "directories": {
     "lib": "src"
   },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "src",
+    "CHANGELOG.md"
+  ],
   "devDependencies": {
+    "@semantic-release/changelog": "5.0.x",
     "@semantic-release/commit-analyzer": "8.0.x",
     "@semantic-release/git": "9.0.x",
     "@semantic-release/github": "7.0.x",
     "@semantic-release/release-notes-generator": "9.0.x",
     "jasmine": "3.5.x",
     "nodemon": "2.0.x",
-    "semantic-release": "^17.0.6",
+    "semantic-release": "17.0.x",
     "semantic-release-test-utils": "https://github.com/michaelmccord/semantic-release-test-utils"
   },
   "peerDependencies": {
@@ -35,6 +42,36 @@
   },
   "scripts": {
     "test": "jasmine",
-    "mon-test": "nodemon --exec jasmine"
+    "mon-test": "nodemon --exec jasmine",
+    "release": "semantic-release"
+  },
+  "release": {
+    "plugins": [
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogTitle": "semantic-release-confluence Changelog"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": "false",
+          "tarballDir": "./pkg.tar"
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "asssets": [
+            {
+              "path": "pkg.tar",
+              "name": "npm package",
+              "label": "npm package"
+            }
+          ]
+        }
+      ]
+    ]
   }
 }
