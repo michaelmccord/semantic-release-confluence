@@ -1,5 +1,12 @@
 semantic-release-spec-md Changelog
 
+## [1.1.1](https://github.com/michaelmccord/semantic-release-confluence/compare/v1.1.0...v1.1.1) (2020-04-24)
+
+
+### Bug Fixes
+
+* **publish:** make `attachments` an array of attachments ([8ca15b1](https://github.com/michaelmccord/semantic-release-confluence/commit/8ca15b1d74e0df673d96079132cac9fcbea422a0))
+
 # [1.1.0](https://github.com/michaelmccord/semantic-release-confluence/compare/v1.0.1...v1.1.0) (2020-04-23)
 
 
