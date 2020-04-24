@@ -206,9 +206,9 @@ async function publishAttachments(pluginConfig, context, logger, docData, attach
     a.path = path.resolve(attachDir, a.title);
   });
 
-  const attachmentsToRemove = attachments.filter(a => a.disposition !== 'Remove');
-  const attachmentsToAdd = attachments.filter(a => a.disposition !== 'Add');
-  const attachmentsToUpdate = attachments.filter(a => a.disposition !== 'Update');
+  const attachmentsToRemove = attachments.filter(a => a.disposition === 'Remove');
+  const attachmentsToAdd = attachments.filter(a => a.disposition === 'Add');
+  const attachmentsToUpdate = attachments.filter(a => a.disposition === 'Update');
 
   try {
     const removals = attachmentsToRemove.map(a => util.promisify(confluence.deleteContent).call(confluence, a.id));
