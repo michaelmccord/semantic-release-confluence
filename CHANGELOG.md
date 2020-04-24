@@ -1,5 +1,12 @@
 semantic-release-spec-md Changelog
 
+## [1.1.2](https://github.com/michaelmccord/semantic-release-confluence/compare/v1.1.1...v1.1.2) (2020-04-24)
+
+
+### Bug Fixes
+
+* use correct logic for `filter` method ([f42c2cd](https://github.com/michaelmccord/semantic-release-confluence/commit/f42c2cd60d21694c31abc1c99e141f1178dcd7a1))
+
 ## [1.1.1](https://github.com/michaelmccord/semantic-release-confluence/compare/v1.1.0...v1.1.1) (2020-04-24)
 
 
