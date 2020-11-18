@@ -33,11 +33,11 @@
     "@semantic-release/release-notes-generator": "9.0.x",
     "jasmine": "3.5.x",
     "nodemon": "2.0.x",
-    "semantic-release": "17.0.x",
+    "semantic-release": "17.2.x",
     "semantic-release-test-utils": "https://github.com/michaelmccord/semantic-release-test-utils"
   },
   "peerDependencies": {
-    "semantic-release": "17.0.x",
+    "semantic-release": "17.2.x",
     "spec-md": "1.1.x"
   },
   "scripts": {
